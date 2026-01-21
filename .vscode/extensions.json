@@ -1,0 +1,13 @@
+{
+  "recommendations": [
+    "DaltonMenezes.aura-theme",
+    "biomejs.biome",
+    "Catppuccin.catppuccin-vsc-icons",
+    "EditorConfig.EditorConfig",
+    "usernamehw.errorlens",
+    "oderwat.indent-rainbow",
+    "christian-kohler.npm-intellisense",
+    "christian-kohler.path-intellisense",
+    "shardulm94.trailing-spaces",
+  ]
+}

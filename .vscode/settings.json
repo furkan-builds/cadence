@@ -3,9 +3,6 @@
   "editor.formatOnSave": true,
   "editor.formatOnPaste": true,
 
-  "eslint.enable": false,
-  "prettier.enable": false,
-
   "typescript.preferences.importModuleSpecifier": "relative",
   "typescript.preferences.importModuleSpecifierEnding": "minimal",
   "typescript.updateImportsOnFileMove.enabled": "always",
@@ -31,10 +28,6 @@
   "files.eol": "\n",
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
-  "files.exclude": {
-    // "**/node_modules": true,
-    // "**/dist": true
-  },
 
   "biome.requireConfiguration": true,
   "biome.lspBin": "node_modules/.bin/biome"

@@ -4,8 +4,8 @@
 
 Get the API into a solid, maintainable state before building features.
 
-- [ ] **Migrate API to TypeScript** — `index.js` is plain JS despite having `tsconfig.base.json`. Create a `tsconfig.json` in `api/` that extends the base config, rename to `.ts`, and set up a build step.
-- [ ] **Add a `.dockerignore`** — exclude `node_modules`, `dist`, `.git`, `.env` files to speed up Docker builds and reduce image size.
+- [x] **Migrate API to TypeScript** — `index.js` is plain JS despite having `tsconfig.base.json`. Create a `tsconfig.json` in `api/` that extends the base config, rename to `.ts`, and set up a build step.
+- [x] **Add a `.dockerignore`** — exclude `node_modules`, `dist`, `.git`, `.env` files to speed up Docker builds and reduce image size.
 - [ ] **Improve Dockerfile** — use multi-stage builds (build stage for TypeScript compilation, production stage for running). Copy `package.json` and `package-lock.json` first to leverage Docker layer caching.
 - [ ] **Add `nodemon` or `tsx watch`** — the container currently runs `node index.js` with no hot reload. Add a dev command that watches for file changes.
 - [ ] **Create a proper `docker-compose.override.yml`** — separate dev-specific config (volume mounts, watch mode) from production config.

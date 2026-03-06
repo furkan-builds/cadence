@@ -41,17 +41,17 @@ services:
           # Initialise Prisma
           npx prisma init;
 
-          # Create index.js if it does not exist
-          if [ ! -f index.js ]; then
-            echo 'const express = require(\"express\");' > index.js;
-            echo 'const app = express();' >> index.js;
-            echo 'app.get(\"/\", (req, res) => res.send(\"Hello, Docker!\"));' >> index.js;
-            echo 'app.listen(3000, () => console.log(\"Server running on port 3000\"));' >> index.js
+          # Create index.ts if it does not exist
+          if [ ! -f index.ts ]; then
+            echo 'import express, { type Request, type Response } from \"express\";' > index.ts;
+            echo 'const app = express();' >> index.ts;
+            echo 'app.get(\"/\", (req: Request, res: Response) => res.send(\"Hello, Docker!\"));' >> index.ts;
+            echo 'app.listen(3000, () => console.log(\"Server running on port 3000\"));' >> index.ts
           fi;
         fi;
 
         # Start the Express app
-        node index.js
+        npx tsx watch index.ts
       "
 
 volumes:

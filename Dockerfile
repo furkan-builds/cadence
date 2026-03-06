@@ -4,8 +4,9 @@ FROM node:25-alpine
 # Set the working directory inside the container
 WORKDIR /app
 
-# If package.json does not exist, create it with npm init -y
-RUN if [ ! -f package.json ]; then npm init -y; fi
+# Install tsx globally for running TypeScript
+RUN npm install -g tsx
 
-# Install dependencies if package.json exists or was created
-RUN npm install express prisma @prisma/client
+# Copy package.json and install dependencies
+COPY api/package.json .
+RUN npm install

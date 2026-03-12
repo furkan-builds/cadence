@@ -8,7 +8,7 @@ Get the API into a solid, maintainable state before building features.
 - [x] **Add a `.dockerignore`** — exclude `node_modules`, `dist`, `.git`, `.env` files to speed up Docker builds and reduce image size.
 - [x] **Improve Dockerfile** — use multi-stage builds (build stage for TypeScript compilation, production stage for running). Copy `package.json` and `package-lock.json` first to leverage Docker layer caching.
 - [x] **Add `nodemon` or `tsx watch`** — the container currently runs `node index.js` with no hot reload. Add a dev command that watches for file changes.
-- [ ] **Create a proper `docker-compose.override.yml`** — separate dev-specific config (volume mounts, watch mode) from production config.
+- [x] **Create a proper `docker-compose.override.yml`** — separate dev-specific config (volume mounts, watch mode) from production config.
 - [x] **Clean up `api/package.json`** — it has ~130+ direct dependencies, many of which are transitive (e.g. `call-bind-apply-helpers`, `side-channel-weakmap`). Trim to only what you actually import, let npm handle the rest.
 - [x] **Add `npm run dev` and `npm run build` scripts** — both in root and in `api/` workspace.
 - [ ] **Set up path aliases** — configure `tsconfig.json` paths for cleaner imports (e.g. `@/routes`, `@/services`).

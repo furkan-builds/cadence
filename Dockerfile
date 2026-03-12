@@ -1,5 +1,5 @@
-# ---- Build stage ----
-FROM node:25-alpine AS build
+# ---- Dev stage ----
+FROM node:25-alpine AS dev
 
 WORKDIR /app
 
@@ -7,8 +7,13 @@ WORKDIR /app
 COPY api/package.json ./
 COPY package-lock.json ./
 
-# Install all dependencies (including devDependencies for building)
+# Install all dependencies (including devDependencies like tsx)
 RUN npm install
+
+CMD ["npm", "run", "dev"]
+
+# ---- Build stage ----
+FROM dev AS build
 
 # Copy source code and config files
 COPY api/ ./

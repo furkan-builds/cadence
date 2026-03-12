@@ -72,7 +72,7 @@ Build a real API structure with proper Prisma models.
 
 ## Quick Wins (do anytime)
 
-- [ ] **Add a `.nvmrc`** — pin the Node.js version (e.g. `25`) so all contributors use the same version.
+- [x] **Add a `.nvmrc`** — pin the Node.js version (e.g. `25`) so all contributors use the same version.
 - [ ] **Add a proper `README.md`** at the root — describe what Cadence is, how to set up locally, and link to this roadmap.
 - [ ] **Remove `web/temp.ts`** — replace with actual project scaffolding when ready.
 - [ ] **Add `engines` field to root `package.json`** — enforce minimum Node.js version.

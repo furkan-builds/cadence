@@ -9,6 +9,8 @@
     "lint:fix": "biome check . --write",
     "format": "biome format .",
     "format:write": "biome format . --write",
+    "dev:api": "npm run dev --workspace=api",
+    "build:api": "npm run build --workspace=api",
     "start:docker": "docker compose up --build -d"
   },
   "engines": {

@@ -16,6 +16,8 @@
     "tsx": "^4.19.4"
   },
   "scripts": {
+    "dev": "tsx watch index.ts",
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   }
 }

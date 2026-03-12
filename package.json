@@ -11,6 +11,9 @@
     "format:write": "biome format . --write",
     "start:docker": "docker compose up --build -d"
   },
+  "engines": {
+    "node": ">=25"
+  },
   "devDependencies": {
     "@biomejs/biome": "^2.3.11"
   }

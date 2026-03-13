@@ -17,7 +17,7 @@ Get the API into a solid, maintainable state before building features.
 
 Build a real API structure with proper Prisma models.
 
-- [ ] **Design your database schema** — add models to `prisma/schema.prisma`. Decide on your domain entities and relationships.
+- [x] **Design your database schema** — add models to `prisma/schema.prisma`. Decide on your domain entities and relationships.
 - [ ] **Run initial migration** — `npx prisma migrate dev --name init` to create the database tables.
 - [ ] **Set up a project structure** — organize the API into layers:
   ```

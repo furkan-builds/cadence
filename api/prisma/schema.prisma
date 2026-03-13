@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client"
   output   = "../generated/prisma"
@@ -11,4 +5,115 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+}
+
+enum QuestStatus {
+  pending
+  completed
+  skipped
+}
+
+enum FrequencyType {
+  daily
+  weekly
+}
+
+enum DurationUnit {
+  days
+  months
+  years
+}
+
+enum LogInstanceStatus {
+  active
+  completed
+  archived
+}
+
+model Player {
+  id        String   @id @default(uuid()) @db.Uuid
+  email     String   @unique
+  username  String   @unique
+  createdAt DateTime @default(now()) @map("created_at")
+
+  questLogTemplates QuestLogTemplate[]
+
+  @@map("players")
+}
+
+model QuestLogTemplate {
+  id       String @id @default(uuid()) @db.Uuid
+  playerId String @map("player_id") @db.Uuid
+
+  title       String
+  description String?
+
+  durationUnit   DurationUnit @map("duration_unit")
+  durationLength Int          @map("duration_length")
+
+  repeats        Boolean @default(true)
+  repeatInterval Int?    @map("repeat_interval")
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  player    Player             @relation(fields: [playerId], references: [id])
+  instances QuestLogInstance[]
+  quests    Quest[]
+
+  @@map("quest_log_templates")
+}
+
+model QuestLogInstance {
+  id         String @id @default(uuid()) @db.Uuid
+  templateId String @map("template_id") @db.Uuid
+
+  startDate DateTime @map("start_date") @db.Date
+  endDate   DateTime @map("end_date") @db.Date
+
+  status LogInstanceStatus
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  template    QuestLogTemplate  @relation(fields: [templateId], references: [id])
+  occurrences QuestOccurrence[]
+
+  @@map("quest_log_instances")
+}
+
+model Quest {
+  id                 String @id @default(uuid()) @db.Uuid
+  questLogTemplateId String @map("quest_log_template_id") @db.Uuid
+
+  title       String
+  description String?
+
+  frequencyType  FrequencyType @map("frequency_type")
+  frequencyCount Int           @map("frequency_count")
+
+  estimatedDurationMinutes Int? @map("estimated_duration_minutes")
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  template    QuestLogTemplate  @relation(fields: [questLogTemplateId], references: [id])
+  occurrences QuestOccurrence[]
+
+  @@map("quests")
+}
+
+model QuestOccurrence {
+  id String @id @default(uuid()) @db.Uuid
+
+  questId            String @map("quest_id") @db.Uuid
+  questLogInstanceId String @map("quest_log_instances_id") @db.Uuid
+
+  scheduledDate DateTime @map("scheduled_date") @db.Date
+
+  status QuestStatus
+
+  completedAt DateTime? @map("completed_at")
+
+  quest    Quest            @relation(fields: [questId], references: [id])
+  instance QuestLogInstance @relation(fields: [questLogInstanceId], references: [id])
+
+  @@map("quest_occurrences")
 }

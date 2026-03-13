@@ -11,6 +11,7 @@
     "format:write": "biome format . --write",
     "dev:api": "npm run dev --workspace=api",
     "build:api": "npm run build --workspace=api",
+    "generate:api": "npm run generate --workspace=api",
     "start:docker": "docker compose up --build -d",
     "clean:docker": "docker compose down -v"
   },

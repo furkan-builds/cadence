@@ -1,0 +1,88 @@
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+
+Enum quest_status {
+  pending
+  completed
+  skipped
+}
+
+Enum frequency_type {
+  daily
+  weekly
+}
+
+Enum duration_unit {
+  days
+  months
+  years
+}
+
+Enum log_instance_status {
+  active
+  completed
+  archived
+}
+
+Table players {
+  id uuid [primary key]
+  email varchar [unique, not null]
+  username varchar [unique, not null]
+  created_at timestamp [not null]
+}
+
+Table quest_log_templates {
+  id uuid [primary key]
+  player_id uuid [not null, ref: > players.id]
+
+  title varchar [not null]
+  description text [note: 'Description of the Quest Log']
+
+  duration_unit duration_unit [not null]
+  duration_length int [not null]
+
+  repeats boolean [not null, default: true]
+  repeat_interval int [note: "Every N units, e.g. 1 = every week"]
+
+  created_at timestamp [not null]
+}
+
+Table quest_log_instances {
+  id uuid [primary key]
+  template_id uuid [not null, ref: > quest_log_templates.id]
+
+  start_date date [not null]
+  end_date date [not null]
+
+  status log_instance_status [not null]
+
+  created_at timestamp [not null]
+}
+
+Table quests {
+  id uuid [primary key]
+  quest_log_template_id uuid [not null, ref: > quest_log_templates.id]
+
+  title varchar [not null]
+  description text [note: "Description of the Quest"]
+
+  frequency_type frequency_type [not null]
+  frequency_count int [not null, note: "Times per period"]
+
+  estimated_duration_minutes int
+
+  created_at timestamp [not null]
+}
+
+Table quest_occurrences {
+  id uuid [primary key]
+
+  quest_id uuid [not null, ref: > quests.id]
+  quest_log_instances_id uuid [not null, ref: > quest_log_instances.id]
+
+  scheduled_date date [not null]
+
+  status quest_status [not null]
+
+  completed_at timestamp
+}

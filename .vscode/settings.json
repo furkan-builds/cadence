@@ -3,11 +3,11 @@
   "editor.formatOnSave": true,
   "editor.formatOnPaste": true,
 
-  "typescript.preferences.importModuleSpecifier": "relative",
-  "typescript.preferences.importModuleSpecifierEnding": "minimal",
-  "typescript.updateImportsOnFileMove.enabled": "always",
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "js/ts.preferences.importModuleSpecifier": "relative",
+  "js/ts.preferences.importModuleSpecifierEnding": "minimal",
+  "js/ts.updateImportsOnFileMove.enabled": "always",
+  "js/ts.tsdk.path": "node_modules/typescript/lib",
+  "js/ts.tsdk.promptToUseWorkspaceVersion": true,
 
   "[javascript]": {
     "editor.defaultFormatter": "biomejs.biome"
@@ -30,7 +30,7 @@
   "files.trimTrailingWhitespace": true,
 
   "biome.requireConfiguration": true,
-  "biome.lspBin": "node_modules/.bin/biome",
+  "biome.lsp.bin": "node_modules/.bin/biome",
 
   "catppuccin-icons.associations.extensions": {
     "dbml": "database"
